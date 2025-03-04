@@ -30,7 +30,7 @@ document.getElementById('checklistForm').addEventListener('submit', function(eve
 });
 
 function sendEmail(checklist) {
-    const emailAddresses = ['email1@example.com', 'email2@example.com']; // Add your email addresses here
+    const emailAddresses = ['aayliffe@skye-cloud.com', 'btrott@skye-cloud.com', 'rravenhill@skye-cloud.com']; // Add your email addresses here
     const subject = 'Fire Alarm Evacuation Checklist';
     const body = `Name: ${checklist.name}\nLocation: ${checklist.location}\nChecked Items: ${checklist.checkedItems.join(', ')}\nUnchecked Items: ${checklist.uncheckedItems.join(', ')}`;
 
