@@ -1,44 +1,15 @@
-document.getElementById('checklistForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value.trim();
-    const location = document.getElementById('location').value.trim();
-    
-    if (!name || !location) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-
-    const checkedItems = [];
-    const uncheckedItems = [];
-    document.querySelectorAll('input[type="checkbox"]').forEach(item => {
-        if (item.checked) {
-            checkedItems.push(item.value);
-        } else {
-            uncheckedItems.push(item.value);
-        }
+// script.js
+function sendEmail() {
+    let register = [];
+    document.querySelectorAll('.person').forEach(person => {
+        let name = person.querySelector('span').textContent;
+        let status = person.querySelector('input:checked') ? person.querySelector('input:checked').value : "No Selection";
+        register.push(`${name}: ${status}`);
     });
 
-    const checklist = {
-        name: name,
-        location: location,
-        checkedItems: checkedItems,
-        uncheckedItems: uncheckedItems
-    };
+    let subject = "Fire Evacuation Register";
+    let body = encodeURIComponent(`Evacuation Register:\n\n${register.join("\n")}`);
 
-    sendEmail(checklist);
-});
-
-function sendEmail(checklist) {
-    const emailAddresses = ['aayliffe@skye-cloud.com', 'btrott@skye-cloud.com', 'rravenhill@skye-cloud.com']; // Add your email addresses here
-    const subject = 'Fire Alarm Evacuation Checklist';
-    const body = `Name: ${checklist.name}\nLocation: ${checklist.location}\nChecked Items: ${checklist.checkedItems.join(', ')}\nUnchecked Items: ${checklist.uncheckedItems.join(', ')}`;
-
-    emailAddresses.forEach(email => {
-        try {
-            window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-        } catch (error) {
-            console.error('Error sending email:', error);
-        }
-    });
+    // Open default email client (Outlook, etc.)
+    window.location.href = `mailto:fire-evac@skye-cloud.com?subject=${subject}&body=${body}`;
 }
