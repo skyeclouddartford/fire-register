@@ -1,0 +1,15 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+.person {
+    margin-bottom: 10px;
+}
+label {
+    margin-left: 10px;
+}
